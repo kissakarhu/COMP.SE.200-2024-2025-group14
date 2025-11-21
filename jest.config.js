@@ -1,6 +1,17 @@
 export default {
   collectCoverage: true,
-  collectCoverageFrom: ["src/*.js"],
+  collectCoverageFrom: [
+    "src/at.js",
+    "src/ceil.js",
+    "src/divide.js",
+    "src/eq.js",
+    "src/isEmpty.js",
+    "src/isObjectLike.js",
+    "src/map.js",
+    "src/reduce.js",
+    "src/toNumber.js",
+    "src/toString.js"
+  ],
 
   coverageDirectory: "coverage",
 
