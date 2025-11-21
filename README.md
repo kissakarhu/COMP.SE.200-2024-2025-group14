@@ -14,4 +14,4 @@ Individuals who remove or modify the license file will also carry the consequenc
 
 ## Current coverage
 
-[![Coverage Status](https://coveralls.io/repos/github/kissakarhu/COMP.SE.200-2024-2025-group14/badge.svg)](https://coveralls.io/github/kissakarhu/COMP.SE.200-2024-2025-group14)
+[![Coverage Status](https://coveralls.io/repos/github/kissakarhu/COMP.SE.200-2024-2025-group14/badge.svg?branch=main)](https://coveralls.io/github/kissakarhu/COMP.SE.200-2024-2025-group14?branch=main)
