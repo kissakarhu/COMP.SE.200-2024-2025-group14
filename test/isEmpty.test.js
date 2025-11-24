@@ -6,13 +6,13 @@ describe('sEmpty', () => {
       expect(isEmpty({})).toBe(true);
     });
     test('should return false for non-empty object', () => {
-      expect(isEmpty({ a: 1 })).toBe(false);
+      expect(isEmpty({ 'a': 1 })).toBe(false);
     });
     test('should return true for empty array', () => {
       expect(isEmpty([])).toBe(true);
     });
     test('should return false for non-empty array', () => {
-      expect(isEmpty([1])).toBe(false);
+      expect(isEmpty([1,2,3])).toBe(false);
     });
     test ('should return true for empty structure', () => {
       expect(isEmpty('')).toBe(true);
@@ -28,6 +28,44 @@ describe('sEmpty', () => {
       map.set('a', 1);
       expect(isEmpty(map)).toBe(false);
     });
+    test('should return true for empty set', () => {
+      expect(isEmpty(new Set())).toBe(true);
+    });
+    test('should return false for non-empty set', () => {
+      const set = new Set();
+      set.add(1);
+      expect(isEmpty(set)).toBe(false);
+    });
+    test('should return true for empty typed array', () => {
+      expect(isEmpty(new Uint8Array())).toBe(true);
+    });
+    test('should return false for non-empty typed array', () => {
+      expect(isEmpty(new Uint8Array([1, 2, 3]))).toBe(false);
+    });
+    test('should return true for empty arguments object', () => {
+      (function() {
+        expect(isEmpty(arguments)).toBe(true);
+      })();
+    });
+    test('should return false for non-empty arguments object', () => {
+      (function() {
+        expect(isEmpty(arguments)).toBe(false);
+      })(1, 2, 3);
+    });
+    test('should return true for empty string object', () => {
+      expect(isEmpty(new String(''))).toBe(true);
+    });
+    test('should return false for non-empty string object', () => {
+      expect(isEmpty(new String('abc'))).toBe(false);
+    })
+    test('should return true for array-like object with splice method', () => {
+      const arrayLike = { length: 0, splice: Array.prototype.splice};
+      expect(isEmpty(arrayLike)).toBe(true);
+    });
+    test('should return false for non-empty array-like object with splice', () => {
+      const arrayLike = { 0: 'a', length: 1, splice: Array.prototype.splice};
+      expect(isEmpty(arrayLike)).toBe(false);
+    });
   });
 
   describe('Edge cases', () => {
@@ -40,17 +78,30 @@ describe('sEmpty', () => {
     test('should return true for NaN', () => {
       expect(isEmpty(NaN)).toBe(true);
     });
+    test('should return true for prototype objects', () => {
+      expect(isEmpty(Object.prototype)).toBe(true);
+      expect(isEmpty(Array.prototype)).toBe(true);
+    });
+    test('should return true for objects with only non-enumerable properties', () => {
+      const obj = Object.create({}, {
+        hidden: { value: 'secret', enumerable: false }
+      });
+      expect(isEmpty(obj)).toBe(true);
+    });
   });
 
   describe('Special values', () => {
-    test('should return false for zero', () => {
+    test('should return true for zero', () => {
       expect(isEmpty(0)).toBe(true);
     }); 
-    test('should return false for false boolean', () => {
+    test('should return true for false boolean', () => {
       expect(isEmpty(false)).toBe(true);
     });
-    test('should return false for true boolean', () => {
+    test('should return true for true boolean', () => {
       expect(isEmpty(true)).toBe(true);
+    });
+    test ('should return true for function', () => {
+      expect(isEmpty(function() {})).toBe(true);
     });
   });
 
