@@ -88,6 +88,17 @@ describe('sEmpty', () => {
       });
       expect(isEmpty(obj)).toBe(true);
     });
+    test('should return true for objects with only inherited properties', () => {
+      const proto = { inherited: 'property' };
+      const obj = Object.create(proto);
+      expect(isEmpty(obj)).toBe(true);
+    });
+    test('should return false for objects with own properties and inherited properties', () => {
+      const proto = { inherited: 'property' };
+      const obj = Object.create(proto);
+      obj.own = 'value';
+      expect(isEmpty(obj)).toBe(false);
+    });
   });
 
   describe('Special values', () => {
