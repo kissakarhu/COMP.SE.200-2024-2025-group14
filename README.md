@@ -22,23 +22,23 @@ To run the unit tests and generate coverage reports locally, run the following c
 the root of the project directory:
 In addition to locally using Linux Mint, the tests were ran on a VMWare Virtual Machine with a
 Linux Ubuntu -image by cloning into the GitHub repository, downloading the npm tool if not
-yet present ('sudo apt install npm') and the running the following commands. The
+yet present (`sudo apt install npm`) and the running the following commands. The
 VMWare Workstation was downloaded from https://www.techspot.com/downloads/189-
 vmware-workstation-for-windows.html
 
 Install dependencies:
-'npm install'
+`npm install`
 
 Run all tests:
-'npm test'
+`npm test`
 
 Run specific test file (example):
-'npm test toString.test.js'
+`npm test toString.test.js`
 
 Generate coverage report:
-'npm run coverage'
+`npm run coverage`
 
 This command creates an HTML coverage report that can be found in the coverage/ directory.
 
 View the report in your browser:
-'open coverage/index.html'
+`open coverage/index.html`
